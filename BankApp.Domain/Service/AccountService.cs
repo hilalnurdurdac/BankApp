@@ -10,55 +10,59 @@ namespace BankApp.Domain.Service
 {
     public class AccountService
     {
-        private List<Account> accounts = new(); 
+        private List<Account> accounts;
 
-        public AccountService() 
+        public AccountService()
         {
             accounts = new List<Account>();
         }
 
-        public int AccountNumber { get; private set; }
-
-        public void HesapAc (string name ,double startBalance, string accountsNumber)
+        public void RegisterAccount(Account account)
         {
-
-            var yeniHesap = new Account
-            {
-                AccountNumber = accountsNumber,
-               Name = name,
-                Balance = startBalance
-            };
-            accounts.Add(yeniHesap);
-        }
-        public void ParaTransEt ( int gondericiHesapNum,int alıcıHesapNum,double miktar)
-        {
-            var göndericiHesap = accounts.FirstOrDefault(h => AccountNumber == gondericiHesapNum);
-            var alıcıHesap = accounts.FirstOrDefault(h => AccountNumber == alıcıHesapNum);
-
-            if (göndericiHesap != null && alıcıHesap != null)
-            {
-                if(göndericiHesap.Balance >= miktar)
-                {
-                    göndericiHesap.Balance -= miktar;
-                    alıcıHesap.Balance += miktar;
-                    Console.WriteLine($"{miktar} TL, {göndericiHesap.Name}nin hesabından {alıcıHesap.Name} nib hesabına transfer edildi.");
-                }
-                else
-                {
-                    Console.WriteLine("hesapta yeterli bakiye yok");
-                }
-            }
-            else
-            {
-                Console.WriteLine("hesap numarası geçersiz");
-            }
-
-            
-            {
-
-
-            }
+            accounts.Add(account);
+            Console.WriteLine("Hesap başarıyla kaydedildi.");
         }
 
+        public void TransferMoney(string senderAccountNumber, string receiverAccountNumber, double amount)
+        {
+            Account sender = null;
+            Account receiver = null;
+
+            foreach (var account in accounts)
+            {
+                if (account.AccountNumber == senderAccountNumber)
+                {
+                    sender = account;
+                }
+                else if (account.AccountNumber == receiverAccountNumber)
+                {
+                    receiver = account;
+                }
+            }
+
+            if (sender == null)
+            {
+                Console.WriteLine("Gönderen hesap bulunamadı.");
+                return;
+            }
+
+            if (receiver == null)
+            {
+                Console.WriteLine("Alıcı hesap bulunamadı.");
+                return;
+            }
+
+            if (sender.Balance < amount)
+            {
+                Console.WriteLine("Yetersiz bakiye.");
+                return;
+            }
+
+            sender.Balance -= amount;
+            receiver.Balance += amount;
+
+            Console.WriteLine($"{amount} TL başarıyla {sender.Name} {sender.Surname}'nin hesabından {receiver.Name} {receiver.Surname}'nin hesabına transfer edildi.");
+        }
     }
 }
+   

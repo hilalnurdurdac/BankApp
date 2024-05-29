@@ -21,13 +21,5 @@ namespace BankApp.Domain.Entities
         public string PhoneNumber { get; set; }
     }
 
-    public class Trans
-    {
-        public string TransId { get; set; }
-        public string GondericiHesapNum { get; set; }
-
-        public string alıcıHesapNum { get; set; }
-
-        public double Miktar { get; set; }
-    }
+   
 }
