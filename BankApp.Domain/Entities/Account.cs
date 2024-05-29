@@ -20,4 +20,14 @@ namespace BankApp.Domain.Entities
         public double Balance { get; set; }
         public string PhoneNumber { get; set; }
     }
+
+    public class Trans
+    {
+        public int TransId { get; set; }
+        public string GondericiHesapNum { get; set; }
+
+        public string alıcıHesapNum { get; set; }
+
+        public double Miktar { get; set; }
+    }
 }
