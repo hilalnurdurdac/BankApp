@@ -38,7 +38,16 @@ class Program
         bank.RegisterAccount(account1);
         bank.RegisterAccount(account2);
 
-        bank.TransferMoney("123456789", "987654321", 1000);
+        Console.WriteLine("Transfer edilecek miktarı giriniz:");
+        double transferAmount;
+        while (!double.TryParse(Console.ReadLine(), out transferAmount) || transferAmount <= 0)
+        {
+            Console.WriteLine("Geçersiz miktar. Lütfen pozitif bir sayı girin:");
+        }
+
+
+
+
+        bank.TransferMoney("123456789", "987654321", transferAmount);
     }
-}
 }
