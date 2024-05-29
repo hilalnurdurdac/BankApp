@@ -23,7 +23,7 @@ namespace BankApp.Domain.Entities
 
     public class Trans
     {
-        public int TransId { get; set; }
+        public string TransId { get; set; }
         public string GondericiHesapNum { get; set; }
 
         public string alıcıHesapNum { get; set; }
