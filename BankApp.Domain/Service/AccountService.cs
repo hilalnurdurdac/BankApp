@@ -15,9 +15,20 @@ namespace BankApp.Domain.Service
         {
             accounts = new List<Account>();
         }
-        public void HesapAc (string Name ,double Balance)
+        public void HesapAc (string name ,double startBalance, string accountsNumber)
         {
-            
+
+            var yeniHesap = new Account
+            {
+                AccountNumber = accountsNumber,
+               Name = name,
+                Balance = startBalance
+            };
+            accounts.Add(yeniHesap);
+        }
+        public void ParaTransEt ( int gondericiHesapNum,int alıcıHesapNum,double miktar)
+        {
+            var göndericiHesap = 
         }
     }
 }
