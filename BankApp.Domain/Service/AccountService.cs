@@ -5,24 +5,33 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace BankApp.Domain.Service
-{
-     private List<Account> accounts = new List<Account>();
+namespace BankApp.Domain.Service;
+public class AccountService
+    {
+        private List<Account> accounts = new List<Account>();
 
         public Account CreateAccount(string name, string surname, string email, string password, string phoneNumber, string identityNumber)
         {
-            Account newAccount = new Account { Id = Guid.NewGuid(), Created = DateTime.Now, Updated = DateTime.Now, Name = name, Surname = surname, Email = email, Password = password, PhoneNumber = phoneNumber, IdentityNumber = identityNumber, Balance = "0", AccountNumber = GenerateAccountNumber() };
+            Account newAccount = new Account
+            {
+                Id = Guid.NewGuid(),
+                Created = DateTime.Now,
+                Updated = DateTime.Now,
+                Name = name,
+                Surname = surname,
+                Email = email,
+                Password = password,
+                PhoneNumber = phoneNumber,
+                IdentityNumber = identityNumber,
+                Balance = "0",
+                AccountNumber = GenerateAccountNumber()
+            };
 
             accounts.Add(newAccount);
             return newAccount;
         }
 
-    internal class accounts
-    {
-    }
-
-    public Account Login(string email, string password)
+        public Account Login(string email, string password)
         {
             return accounts.SingleOrDefault(a => a.Email == email && a.Password == password);
         }
@@ -83,6 +92,7 @@ namespace BankApp.Domain.Service
             Random random = new Random();
             return random.Next(100000, 999999).ToString();
         }
+    }
     
-}
+
 

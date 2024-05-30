@@ -1,8 +1,8 @@
 ﻿namespace BankApp.Domain;
+using BankApp.Domain.Entities;
 
-public class TransferMoneyService
-{
-    
+    public class TransferMoneyService
+    {
         private AccountService accountService;
 
         public TransferMoneyService(AccountService accountService)
@@ -32,5 +32,4 @@ public class TransferMoneyService
             }
             return false;
         }
-
-}
+    }
