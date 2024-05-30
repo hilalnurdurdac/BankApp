@@ -1,7 +1,8 @@
 ﻿namespace BankApp.Domain;
 using BankApp.Domain.Entities;
+using BankApp.Domain.Service;
 
-    public class TransferMoneyService
+public class TransferMoneyService
     {
         private AccountService accountService;
 

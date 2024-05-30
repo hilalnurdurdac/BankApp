@@ -225,3 +225,15 @@ class Program
             }
         }
     }
+
+internal class TransferMoneyService
+{
+    public TransferMoneyService(AccountService accountService)
+    {
+    }
+
+    internal bool TransferMoney(string accountNumber, string? receiverAccountNumber, decimal amount)
+    {
+        throw new NotImplementedException();
+    }
+}
