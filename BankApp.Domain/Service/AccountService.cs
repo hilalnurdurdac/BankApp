@@ -65,4 +65,4 @@ namespace BankApp.Domain.Service
         }
     }
 }
-   
+

@@ -6,6 +6,15 @@ class Program
     static void Main(string[] args)
     {
         AccountService bank = new AccountService();
+        Console.WriteLine("1. Kaydol");
+        Console.WriteLine("2. Giriş");
+        Console.WriteLine("3.Hesap Sorgulama");
+        Console.WriteLine("4.Para çekme");
+        Console.WriteLine("5.Para Transfer");
+        Console.WriteLine("6.Çıkış");
+        Console.Write("Bir seçenek seçin: ");
+        string option = Console.ReadLine();
+
 
         Account account1 = new Account
         {

@@ -21,5 +21,5 @@ namespace BankApp.Domain.Entities
         public string PhoneNumber { get; set; }
     }
 
-   
+
 }
