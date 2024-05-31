@@ -4,39 +4,39 @@ using BankApp.Domain.Service;
 
 class Program
 {
-     static void ChangePhoneNumber()
+    static void ChangePhoneNumber()
+    {
+        if (currentAccount != null)
         {
-            if (currentAccount != null)
-            {
-                Console.Write("Yeni telefon numaranızı girin: ");
-                string newPhoneNumber = Console.ReadLine();
+            Console.Write("Yeni telefon numaranızı girin: ");
+            string newPhoneNumber = Console.ReadLine();
 
-                if (accountService.UpdatePhoneNumber(currentAccount, newPhoneNumber))
-                {
-                    Console.WriteLine("Telefon numaranız başarıyla güncellendi.");
-                }
-                else
-                {
-                    Console.WriteLine("Geçersiz telefon numarası.");
-                }
+            if (accountService.UpdatePhoneNumber(currentAccount, newPhoneNumber))
+            {
+                Console.WriteLine("Telefon numaranız başarıyla güncellendi.");
             }
             else
             {
-                Console.WriteLine("Giriş yapmanız gerekmektedir.");
+                Console.WriteLine("Geçersiz telefon numarası.");
             }
         }
-
-        static void ViewPhoneNumber()
-        {
-           if (currentAccount != null)
-    {
-        Console.WriteLine($"Telefon Numaranız: {currentAccount.PhoneNumber}");
-    }
         else
-    {
-        Console.WriteLine("Giriş yapmanız gerekmektedir.");
-    }
+        {
+            Console.WriteLine("Giriş yapmanız gerekmektedir.");
         }
+    }
+
+    static void ViewPhoneNumber()
+    {
+        if (currentAccount != null)
+        {
+            Console.WriteLine($"Telefon Numaranız: {currentAccount.PhoneNumber}");
+        }
+        else
+        {
+            Console.WriteLine("Giriş yapmanız gerekmektedir.");
+        }
+    }
     static AccountService accountService = new AccountService();
     static TransferMoneyService transferService = new TransferMoneyService(accountService);
     static Account currentAccount = null;
@@ -137,9 +137,38 @@ class Program
 
         Console.Write("Soyadınızı girin: ");
         string surname = Console.ReadLine();
+string email = "";
+        while (true)
+        {
 
-        Console.Write("E-posta adresinizi girin: ");
-        string email = Console.ReadLine();
+
+            Console.Write("E-posta adresinizi girin: ");
+            email = Console.ReadLine();
+
+            string[] allowedDomains = { "@gmail.com", "@hotmail.com" };
+
+            bool isAllowedDomain = false;
+
+            foreach (var domain in allowedDomains)
+            {
+                if (email.EndsWith(domain))
+                {
+                    isAllowedDomain = true;
+                    break;
+                }
+            }
+
+            if (isAllowedDomain)
+                break;
+            else
+            {
+                Console.WriteLine("Geçersiz mail!");
+            }
+
+
+        }
+
+
 
         Console.Write("Şifrenizi oluşturun: ");
         string password = Console.ReadLine();
@@ -157,6 +186,7 @@ class Program
 
     static void Login()
     {
+
         Console.Write("E-posta adresinizi girin: ");
         string email = Console.ReadLine();
 
@@ -212,7 +242,7 @@ class Program
             Console.WriteLine("Giriş yapmanız gerekmektedir.");
         }
     }
-    
+
     static void WithdrawMoney()
     {
         if (currentAccount != null)
@@ -272,4 +302,3 @@ class Program
 }
 
 
-       
